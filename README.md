@@ -21,6 +21,22 @@ Copilot CLI stores session metadata locally. This app reads two sources:
 
 The app cross-references lock file PIDs with running processes to determine which sessions are active, then displays them in a native macOS menu bar dropdown.
 
+```mermaid
+graph LR
+    A["~/.copilot/session-store.db"] -->|SQLite read-only| B["Session Reader"]
+    C["~/.copilot/session-state/*/inuse.*.lock"] -->|Glob + PID check| B
+    B -->|Active sessions| D["Menu Builder"]
+    D -->|systray API| E["macOS Menu Bar"]
+    E -->|Click session| F["AppleScript"]
+    F -->|Switch tab| G["Terminal.app"]
+    H["30s Timer"] -->|Refresh| B
+
+    style A fill:#2d333b,color:#e6edf3,stroke:#444
+    style C fill:#2d333b,color:#e6edf3,stroke:#444
+    style E fill:#1a7f37,color:#fff,stroke:#444
+    style G fill:#2d333b,color:#e6edf3,stroke:#444
+```
+
 > **Note:** This app is read-only — it never modifies any Copilot files.
 
 ## Prerequisites
