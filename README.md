@@ -32,8 +32,8 @@ The app cross-references lock file PIDs with running processes to determine whic
 ## Quick Start
 
 ```bash
-git clone https://github.com/liamhampton/copilot-session-monitor.git
-cd copilot-session-monitor
+git clone https://github.com/liamchampton/copilot-cli-session-monitor.git
+cd copilot-cli-session-monitor
 make bundle
 open 'Copilot CLI Session Monitor.app'
 ```

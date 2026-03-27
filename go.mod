@@ -1,4 +1,4 @@
-module github.com/liamhampton/copilot-session-monitor
+module github.com/liamchampton/copilot-cli-session-monitor
 
 go 1.25.2
 

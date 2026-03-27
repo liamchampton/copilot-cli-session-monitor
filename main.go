@@ -6,9 +6,9 @@ import (
 	"time"
 
 	"fyne.io/systray"
-	"github.com/liamhampton/copilot-session-monitor/internal/menu"
-	"github.com/liamhampton/copilot-session-monitor/internal/monitor"
-	"github.com/liamhampton/copilot-session-monitor/internal/session"
+	"github.com/liamchampton/copilot-cli-session-monitor/internal/menu"
+	"github.com/liamchampton/copilot-cli-session-monitor/internal/monitor"
+	"github.com/liamchampton/copilot-cli-session-monitor/internal/session"
 )
 
 //go:embed assets/icon-active.png

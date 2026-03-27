@@ -4,8 +4,8 @@ import (
 	"log"
 	"time"
 
-	"github.com/liamhampton/copilot-session-monitor/internal/menu"
-	"github.com/liamhampton/copilot-session-monitor/internal/session"
+	"github.com/liamchampton/copilot-cli-session-monitor/internal/menu"
+	"github.com/liamchampton/copilot-cli-session-monitor/internal/session"
 )
 
 // Monitor periodically reads session data and updates the menu.
@@ -73,4 +73,3 @@ func (m *Monitor) readSessions() []session.CopilotSession {
 	}
 	return sessions
 }
-

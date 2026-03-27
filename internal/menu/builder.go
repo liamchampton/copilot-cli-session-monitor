@@ -9,8 +9,8 @@ import (
 	"time"
 
 	"fyne.io/systray"
-	"github.com/liamhampton/copilot-session-monitor/internal/session"
-	"github.com/liamhampton/copilot-session-monitor/internal/terminal"
+	"github.com/liamchampton/copilot-cli-session-monitor/internal/session"
+	"github.com/liamchampton/copilot-cli-session-monitor/internal/terminal"
 )
 
 // Builder manages the systray menu lifecycle.
