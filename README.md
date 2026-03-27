@@ -1,6 +1,6 @@
 # Copilot CLI Session Monitor
 
-A lightweight macOS menu bar app that shows your active [GitHub Copilot CLI](https://githubnext.com/projects/copilot-cli) sessions at a glance. Click any session to jump straight to its Terminal.app tab.
+A lightweight macOS menu bar app that shows your active [GitHub Copilot CLI](https://github.com/features/copilot/cli) sessions at a glance. Click any session to jump straight to its Terminal.app tab.
 
 ![menu bar screenshot placeholder](assets/screenshot.png)
 
@@ -25,9 +25,9 @@ The app cross-references lock file PIDs with running processes to determine whic
 
 ## Prerequisites
 
-- **macOS 13 (Ventura)** or later
-- **Go 1.21+** (for building from source)
-- **GitHub Copilot CLI** installed and used at least once (so `~/.copilot/` exists)
+- **macOS 26 (Tahoe)** or later
+- **Go 1.25+** (for building from source)
+- **GitHub Copilot CLI 1.0.12** or later installed and used at least once (so `~/.copilot/` exists)
 
 ## Quick Start
 
@@ -135,24 +135,33 @@ make clean
 ### Project Structure
 
 ```
-copilot-session-monitor/
-├── main.go                      # Entry point — systray.Run()
+copilot-cli-session-monitor/
+├── main.go                        # Entry point — systray.Run()
 ├── internal/
-│   ├── session/
-│   │   ├── types.go             # CopilotSession struct
-│   │   └── reader.go            # SQLite + lock file reader
 │   ├── menu/
-│   │   └── builder.go           # Systray menu construction
+│   │   ├── builder.go             # Systray menu construction
+│   │   └── builder_test.go        # Unit tests for menu builder
 │   ├── monitor/
-│   │   └── monitor.go           # Refresh timer orchestration
+│   │   └── monitor.go             # Refresh timer orchestration
+│   ├── session/
+│   │   ├── types.go               # CopilotSession struct
+│   │   ├── reader.go              # SQLite + lock file reader
+│   │   └── reader_test.go         # Unit tests for session reader
 │   └── terminal/
-│       └── focus.go             # Terminal.app tab switching (AppleScript)
+│       └── focus.go               # Terminal.app tab switching (AppleScript)
 ├── assets/
-│   ├── icon-active.png          # Green menu bar icon
-│   └── icon-idle.png            # Gray menu bar icon
+│   ├── AppIcon.icns               # macOS app icon (icns format)
+│   ├── app-icon.png               # App icon source (png)
+│   ├── icon-active.png            # Green menu bar icon
+│   └── icon-idle.png              # Gray menu bar icon
 ├── bundle/
-│   └── Info.plist               # macOS app bundle metadata
-├── Makefile                     # Build, bundle, install targets
+│   └── Info.plist                 # macOS app bundle metadata
+├── .github/
+│   └── agents/
+│       └── go-testing-agent.agent.md  # Copilot agent for Go tests
+├── Makefile                       # Build, bundle, install targets
+├── CONTRIBUTING.md                # Contribution guidelines
+├── LICENSE                        # Project license
 ├── go.mod
 └── go.sum
 ```
