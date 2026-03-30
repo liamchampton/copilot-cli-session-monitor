@@ -86,13 +86,14 @@ func (b *Builder) buildMenuItems(sessions []session.CopilotSession) {
 			sub.Disable()
 
 			pid := s.PID
+			cwd := s.CWD
 			go func() {
 				for {
 					select {
 					case <-done:
 						return
 					case <-item.ClickedCh:
-						if err := terminal.FocusTabByPID(pid); err != nil {
+						if err := terminal.FocusTabByPID(pid, cwd); err != nil {
 							log.Printf("Failed to focus tab for PID %d: %v", pid, err)
 						}
 					}

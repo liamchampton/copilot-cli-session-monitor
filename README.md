@@ -28,7 +28,7 @@ graph LR
     B -->|Active sessions| D["Menu Builder"]
     D -->|systray API| E["macOS Menu Bar"]
     E -->|Click session| F["AppleScript"]
-    F -->|Switch tab| G["Terminal.app"]
+    F -->|Switch tab| G["Terminal.app / Ghostty"]
     H["30s Timer"] -->|Refresh| B
 
     style A fill:#2d333b,color:#e6edf3,stroke:#444
@@ -114,11 +114,12 @@ Quit
 
 ### Terminal Compatibility
 
-Session detection works with **any terminal** — it reads from Copilot CLI's local files, not the terminal itself. Tab switching currently supports macOS default terminal only.
+Session detection works with **any terminal** — it reads from Copilot CLI's local files, not the terminal itself. Tab switching currently supports macOS default terminal and Ghostty.
 
 | Terminal | Session list | Active/idle status | Click to switch tab |
 |----------|:---:|:---:|:---:|
 | **macOS default terminal** | ✅ | ✅ | ✅ |
+| **Ghostty** | ✅ | ✅ | ✅ |
 | **iTerm2** | ✅ | ✅ | ❌ Not yet |
 | **Warp** | ✅ | ✅ | ❌ Not yet |
 | **Kitty** | ✅ | ✅ | ❌ Not yet |
@@ -130,9 +131,9 @@ Session detection works with **any terminal** — it reads from Copilot CLI's lo
 
 ### macOS Permissions
 
-On first launch, macOS will ask for **Automation** permission to control Terminal.app. This is required for the tab-switching feature. Grant it in:
+On first launch, macOS will ask for **Automation** permission to control Terminal.app (or Ghostty, if detected). This is required for the tab-switching feature. Grant it in:
 
-**System Settings → Privacy & Security → Automation → Copilot CLI Session Monitor → Terminal**
+**System Settings → Privacy & Security → Automation → Copilot CLI Session Monitor → Terminal / Ghostty**
 
 ## Uninstall
 
@@ -180,7 +181,7 @@ copilot-cli-session-monitor/
 │   │   ├── reader.go              # SQLite + lock file reader
 │   │   └── reader_test.go         # Unit tests for session reader
 │   └── terminal/
-│       └── focus.go               # Terminal.app tab switching (AppleScript)
+│       └── focus.go               # Terminal tab switching (Terminal.app + Ghostty)
 ├── assets/
 │   ├── AppIcon.icns               # macOS app icon (icns format)
 │   ├── app-icon.png               # App icon source (png)
@@ -222,7 +223,7 @@ copilot-cli-session-monitor/
 - [Go](https://go.dev/) — application language
 - [fyne.io/systray](https://pkg.go.dev/fyne.io/systray) — cross-platform system tray
 - [modernc.org/sqlite](https://pkg.go.dev/modernc.org/sqlite) — pure Go SQLite driver
-- AppleScript — Terminal.app tab switching
+- AppleScript — Terminal.app and Ghostty tab switching
 
 ## Contributing
 
